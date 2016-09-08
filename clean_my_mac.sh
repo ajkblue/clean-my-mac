@@ -66,9 +66,23 @@ case "$line" in
     n|N) echo "Skipping Terminal cleaning..."
          sleep 2
         ;;
-    y|Y) sudo mv /private/var/log/asl/*.asl ~/.Trash
-         #sudo rm -rf /private/var/log/asl/*.asl
+    y|Y) sudo rm -rf /private/var/log/asl/*.asl
+         #sudo mv /private/var/log/asl/*.asl ~/.Trash
          #sudo rm -i /private/var/log/asl/*.asl
+         echo "Done cleaning Terminal Caches"
+        ;;
+esac
+#Bash history cleaning
+echo "Would you like to clear your Bash sessions/history [y/n]?"
+read line
+case "$line" in
+    n|N) echo "Skipping Bash sessions/history cleaning..."
+         sleep 2
+        ;;
+    y|Y) sudo rm -rf /var/root/.sh_history
+         rm -rf ~/.bash_history
+         rm -rf ~/.bash_sessions/*
+         echo "Done cleaning Bash history/sessions"
         ;;
 esac
 #Xcode DerivedData & Archives (if Xcode exists in /Applications directory)
